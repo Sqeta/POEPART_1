@@ -1,1 +1,33 @@
-﻿
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link rel="stylesheet" href="~/css/Styles.css" asp-asp-append-version="true" />
+@Html.Partial("_NavBars")
+
+<div class="manager-container">
+    <h2>Academic Manager - Dashboard</h2>
+
+    <!-- Welcome section -->
+    <div class="welcome-box">
+        <h3> Welcome, Academic Manager!</h3>
+        <p>
+            This dashboard gives you quick access to all your important tasks.
+            From here, you can <b>review and approve claims</b>, or
+            <b>generate detailed claim reports</b> for auditing and record-keeping.
+        </p>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="manager-actions">
+        <a href="@Url.Action("ViewApprove","Home")" class="action-btn"> View & Approve Claims</a>
+        <a href="@Url.Action("GenerateReport","Home")" class="action-btn"> Generate Claim Report</a>
+    </div>
+
+    
+</div>
+
+<footer class="footer">
+    <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
+</footer>
