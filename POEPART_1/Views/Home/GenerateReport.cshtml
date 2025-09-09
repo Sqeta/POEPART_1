@@ -1,1 +1,37 @@
-﻿
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<link rel="stylesheet" href="~/css/Styles.css" asp-asp-append-version="true" />
+@Html.Partial("_NavBars")
+
+<div class="manager-container">
+    <h2>Generate Claim Report</h2>
+
+    <form class="report-form" action="#" method="post">
+        <div class="form-group">
+            <label for="from-date">From Date</label>
+            <input type="date" id="from-date" name="from_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="to-date">To Date</label>
+            <input type="date" id="to-date" name="to_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="format">Report Format</label>
+            <select id="format" name="format" required>
+                <option value="pdf">PDF</option>
+                <option value="excel">Excel</option>
+            </select>
+        </div>
+
+        <div class="form-group submit-btn">
+            <button type="submit">Generate Report</button>
+        </div>
+    </form>
+
+    <p><a href="@Url.Action("Academic_Manager","Home")">Go back to the dashboard</a></p>
+
+</div>
+
