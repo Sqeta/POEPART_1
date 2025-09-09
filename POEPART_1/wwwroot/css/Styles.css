@@ -1,0 +1,530 @@
+﻿body {
+}
+.navigations {
+    display: flex;
+    align-items: ce4nter;
+    justify-content: space-between;
+    background-color: cornflowerblue; 
+    border-bottom: 2px solid #e5e5e5; 
+    padding: 12px 40px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+    .navigations h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #2c3e50;
+        flex-grow: 1; 
+    }
+
+    .navigations a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #2c3e50;
+        font-size: 16px;
+        font-weight: 500;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+        padding-bottom: 4px;
+    }
+
+        .navigations a:hover {
+            color: #1a73e8; 
+            border-bottom: 2px solid #1a73e8; 
+        }
+
+
+.hero {
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+    .hero h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        max-width: 700px;
+        margin: 0 auto 25px auto;
+    }
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #1a73e8;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #f1f1f1;
+        color: #0c54c5;
+    }
+
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    margin-top: -20px;
+}
+
+.feature {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+    .feature:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+
+.footer {
+    text-align: center;
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+}
+
+.login-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+    .login-box h2 {
+        margin-bottom: 10px;
+        color: #1a73e8;
+    }
+
+.login-subtitle {
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #1a73e8;
+        }
+
+.btn-primary {
+    width: 100%;
+    background-color: #1a73e8;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        color:white;
+        background-color: #0c54c5;
+    }
+
+.extra-links {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+    .extra-links a {
+        color: #1a73e8;
+        text-decoration: none;
+    }
+
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+    
+
+.claim-container {
+    max-width: 95%;
+    margin: 40px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    font-family: Arial, sans-serif;
+    overflow-x: auto; /* allow scroll if too wide */
+}
+
+    /* Title */
+    .claim-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0d47a1;
+        font-size: 22px;
+    }
+
+
+.claim-form {
+    display: inline-block;
+ 
+    align-items: flex-end;
+    gap: 20px;
+    min-width: 1000px; 
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+}
+
+    
+    .form-group label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #333;
+    }
+
+  
+    .form-group input,
+    .form-group textarea {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        background: #fff;
+    }
+
+
+.submit-btn button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1976d2;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+    .submit-btn button:hover {
+        background-color: #0d47a1;
+    }
+
+
+
+.coordinator-container {
+    max-width: 95%;
+    margin: 40px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #f3f9f9, #d6eaf8);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    font-family: Arial, sans-serif;
+}
+
+
+    .coordinator-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #0d47a1;
+        font-size: 22px;
+    }
+
+
+.claims-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+    .claims-table th,
+    .claims-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .claims-table th {
+        background-color: #1976d2;
+        color: white;
+    }
+
+
+.approve-btn {
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: 0.3s;
+}
+
+    .approve-btn:hover {
+        background-color: #1b5e20;
+    }
+
+.reject-btn {
+    background-color: #c62828;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .reject-btn:hover {
+        background-color: #8e0000;
+    }
+
+
+
+
+.manager-container {
+    max-width: 95%;
+    margin: 40px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb); 
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+    
+    .manager-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #1565c0; 
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+
+.manager-actions {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+    .manager-actions .action-btn {
+        padding: 16px 28px;
+        background: linear-gradient(135deg, #42a5f5, #1565c0); 
+        color: #fff;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+        .manager-actions .action-btn:hover {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1); 
+            transform: scale(1.05);
+        }
+
+
+
+.manager-container .claims-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+    .manager-container .claims-table th {
+        background: #1565c0; 
+        color: white;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .manager-container .claims-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .manager-container .claims-table tr:nth-child(even) {
+        background: #e3f2fd; 
+    }
+
+
+.manager-container .approve-btn {
+    background-color: #1976d2; 
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: 0.3s;
+}
+
+    .manager-container .approve-btn:hover {
+        background-color: #0d47a1; 
+    }
+
+.manager-container .reject-btn {
+    background-color: #d32f2f; 
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .manager-container .reject-btn:hover {
+        background-color: #8e0000;
+    }
+
+
+.manager-container .report-form {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+    .manager-container .report-form .form-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+    }
+
+    .manager-container .report-form label {
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .manager-container .report-form input,
+    .manager-container .report-form select {
+        padding: 10px;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        font-size: 14px;
+        background: #fff;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+
+.manager-container .submit-btn button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #42a5f5, #1565c0); 
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+
+    .manager-container .submit-btn button:hover {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+        transform: scale(1.05);
+    }
+
+
+.manager-container .welcome-box {
+    background: #e3f2fd; 
+    border-left: 5px solid #1565c0; 
+    padding: 18px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+    .manager-container .welcome-box h3 {
+        margin-top: 0;
+        color: #1565c0; 
+        font-size: 20px;
+    }
+
+    .manager-container .welcome-box p {
+        margin: 10px 0 0;
+        color: #444;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+.manager-container p a {
+    color: #1565c0; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .manager-container p a:hover {
+        color: #0d47a1; 
+        text-decoration: underline;
+    }

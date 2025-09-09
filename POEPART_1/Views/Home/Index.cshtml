@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@Html.Partial("_NavBars")
+
+
+<link rel="stylesheet" href="~/css/Styles.css" />
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Welcome to the Contract Monthly Claim System</h1>
+        <p>
+            A streamlined platform for submitting and managing monthly claims
+            for Independent Contractor Lecturers. Designed to improve accuracy,
+            efficiency, and transparency.
+        </p>
+        <a href="@Url.Action("Login","Home")" class="btn-primary">Get Started</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="feature">
+        <h2>Easy Claim Submission</h2>
+        <p>Submit your monthly claims quickly with an intuitive interface.</p>
+    </div>
+    <div class="feature">
+        <h2>Secure Approval Process</h2>
+        <p>Programme Coordinators and Academic Managers can review and approve claims securely.</p>
+    </div>
+    <div class="feature">
+        <h2>Accurate Reporting</h2>
+        <p>Track your claims with accurate records and supporting documents.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
+</footer>
