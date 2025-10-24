@@ -16,6 +16,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        //create an instance for class model auto create
+        auto_create_instance_db_tables create = new auto_create_instance_db_tables();
+        //use object name to call the auto create method 
+        create.InitializeSystem();
         return RedirectToAction("Home");
     }
     [HttpGet]
