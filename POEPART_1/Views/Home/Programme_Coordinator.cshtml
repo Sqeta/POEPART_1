@@ -1,71 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<link rel="stylesheet" href="~/css/Styles.css"  />
+﻿@model POEPART_1.Models.ProgrammeCoordinatorViewModel
+
 @Html.Partial("_NavBars")
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programme Coordinator - Claims Review</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="~/css/Styles.css">
 </head>
-<body>
 
+<body>
     <div class="coordinator-container">
         <h2>Programme Coordinator - Claims Review</h2>
 
-        <!-- Table of submitted claims -->
         <table class="claims-table">
             <thead>
                 <tr>
                     <th>Lecturer Name</th>
-                    <th>Lecturer ID</th>
-                    <th>Hours Worked</th>
+                    <th>Employee No</th>
+                    <th>Module</th>
+                    <th>Sessions</th>
                     <th>Hourly Rate</th>
+                    <th>Total Amount</th>
                     <th>Description</th>
-                    <th>Uploaded File</th>
+                    <th>Start</th>
+                    <th>End</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Example row (replace with dynamic data later) -->
-                <tr>
-                    <td>Israel Bester</td>
-                    <td>LC123</td>
-                    <td>10</td>
-                    <td>R250</td>
-                    <td>Marking scripts</td>
-                    <td><a href="#">View File</a></td>
-                    <td>Pending</td>
-                    <td>
-                        <button class="approve-btn">Pre Approve</button>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>Thabo Mokoena</td>
-                    <td>LC456</td>
-                    <td>15</td>
-                    <td>R300</td>
-                    <td>Lecturing hours</td>
-                    <td><a href="#">View File</a></td>
-                    <td>Pending</td>
-                    <td>
-                        <button class="approve-btn">Pre Approve</button>
-                        
-                    </td>
-                </tr>
+                @if (Model.Claims != null && Model.Claims.Count > 0)
+                {
+                    foreach (var claim in Model.Claims)
+                    {
+                        <tr>
+                            <td>@claim.Lecture_Name</td>
+                            <td>@claim.EmployeeNum</td>
+                            <td>@claim.Module_Name</td>
+                            <td>@claim.Number_ofSessions</td>
+                            <td>@claim.Hourly_rate.ToString("R")</td>
+                            <td>@claim.Total_Amount.ToString("R")</td>
+                            <td>@claim.Claim_Description</td>
+                            <td>@claim.Claim_Start_Date.ToShortDateString()</td>
+                            <td>@claim.Claim_End_Date.ToShortDateString()</td>
+                            <td>@claim.Claim_Status</td>
+                            <td>
+                                <form asp-action="UpdateClaimStatus" method="post" style="display:inline;">
+                                    <input type="hidden" name="claimId" value="@claim.Claim_Id" />
+                                    <input type="hidden" name="newStatus" value="Pre-Approved" />
+                                    <button type="submit" class="approve-btn">Pre-Approve</button>
+                                </form>
+
+                                <form asp-action="UpdateClaimStatus" method="post" style="display:inline;">
+                                    <input type="hidden" name="claimId" value="@claim.Claim_Id" />
+                                    <input type="hidden" name="newStatus" value="Rejected" />
+                                    <button type="submit" class="reject-btn">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" class="text-center">No claims available.</td>
+                    </tr>
+                }
+
             </tbody>
         </table>
     </div>
 
-</body>
-</html>
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
+    </footer>
 
-<footer class="footer">
-    <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
-</footer>
+</body>
+

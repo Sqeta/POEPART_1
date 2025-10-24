@@ -1,33 +1,76 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<link rel="stylesheet" href="~/css/Styles.css" asp-asp-append-version="true" />
+﻿@model POEPART_1.Models.AcademicManagerViewModel
 @Html.Partial("_NavBars")
 
-<div class="manager-container">
-    <h2>Academic Manager - Dashboard</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Manager - Final Approval</title>
+    <link rel="stylesheet" href="~/css/Styles.css" />
+</head>
 
-    <!-- Welcome section -->
-    <div class="welcome-box">
-        <h3> Welcome, Academic Manager!</h3>
-        <p>
-            This dashboard gives you quick access to all your important tasks.
-            From here, you can <b>review and approve claims</b>, or
-            <b>generate detailed claim reports</b> for auditing and record-keeping.
-        </p>
+<body>
+    <div class="manager-container">
+        <h2>Academic Manager - Final Approval</h2>
+
+        <table class="claims-table">
+            <thead>
+                <tr>
+                    <th>Lecturer Name</th>
+                    <th>Employee No</th>
+                    <th>Module</th>
+                    <th>Sessions</th>
+                    <th>Hourly Rate</th>
+                    <th>Total Amount</th>
+                    <th>Description</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Claims != null && Model.Claims.Count > 0)
+                {
+                    foreach (var claim in Model.Claims)
+                    {
+                        <tr>
+                            <td>@claim.Lecture_Name</td>
+                            <td>@claim.EmployeeNum</td>
+                            <td>@claim.Module_Name</td>
+                            <td>@claim.Number_ofSessions</td>
+                            <td>@claim.Hourly_rate.ToString("R")</td>
+                            <td>@claim.Total_Amount.ToString("R")</td>
+                            <td>@claim.Claim_Description</td>
+                            <td>@claim.Claim_Start_Date.ToShortDateString()</td>
+                            <td>@claim.Claim_End_Date.ToShortDateString()</td>
+                            <td>@claim.Claim_Status</td>
+                            <td>
+                                <form asp-action="UpdateClaimStatusByManager" method="post" style="display:inline;">
+                                    <input type="hidden" name="claimId" value="@claim.Claim_Id" />
+                                    <input type="hidden" name="newStatus" value="Final Approved" />
+                                    <button type="submit" class="approve-btn">Approve</button>
+                                </form>
+
+                                <form asp-action="UpdateClaimStatusByManager" method="post" style="display:inline;">
+                                    <input type="hidden" name="claimId" value="@claim.Claim_Id" />
+                                    <input type="hidden" name="newStatus" value="Rejected by Manager" />
+                                    <button type="submit" class="reject-btn">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" class="text-center">No claims available.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 
-    <!-- Quick actions -->
-    <div class="manager-actions">
-        <a href="@Url.Action("ViewApprove","Home")" class="action-btn"> View & Approve Claims</a>
-        <a href="@Url.Action("GenerateReport","Home")" class="action-btn"> Generate Claim Report</a>
-    </div>
-
-    
-</div>
-
-<footer class="footer">
-    <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
-</footer>
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
+    </footer>
+</body>

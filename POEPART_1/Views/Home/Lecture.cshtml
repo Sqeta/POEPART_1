@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model POEPART_1.Models.Claim;
 <link rel="stylesheet" href="~/css/Styles.css"  />
 @Html.Partial("_NavBars")
 
@@ -10,50 +6,78 @@
 <div class="claim-container">
     <h2>Lecture Claim Submission Form</h2>
 
-    <form class="claim-form" action="#" method="post" enctype="multipart/form-data">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form asp-action="Lecture" method="post" enctype="multipart/form-data">
+        <span asp-validation-summary="All" class="text-danger"></span>
 
         <div class="form-group">
-            <label for="name">Lecturer Name</label>
-            <input type="text" id="name" name="lecturer_name" required>
-        </div>
-
-        <div class="form-group">
-            <label for="id">Lecturer ID</label>
-            <input type="text" id="id" name="lecturer_id" required>
-        </div>
-        <div class="form-group">
-            <label for="id">Module Name</label>
-            <input type="text" id="id" name="Module" required>
-        </div>
-        <div class="form-group">
-            <label for="id">Claim Date</label>
-            <input type="date" id="id" name="Date" required>
+            <label asp-for="EmployeeNum"></label>
+            <input asp-for="EmployeeNum" class="form-control" />
+            <span asp-validation-for="EmployeeNum" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label for="hours">Hours Worked</label>
-            <input type="number" id="hours" name="hours_worked" required>
+            <label asp-for="Lecture_Name"></label>
+            <input asp-for="Lecture_Name" class="form-control" />
+            <span asp-validation-for="Lecture_Name" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label for="rate">Hourly Rate</label>
-            <input type="number" id="rate" name="hourly_rate" required>
+            <label asp-for="Module_Name"></label>
+            <input asp-for="Module_Name" class="form-control" />
+            <span asp-validation-for="Module_Name" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label for="desc">Claim Description</label>
-            <textarea id="desc" name="claim_description" rows="2"></textarea>
+            <label asp-for="Number_ofSessions"></label>
+            <input asp-for="Number_ofSessions" class="form-control" />
+            <span asp-validation-for="Number_ofSessions" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label for="file">Upload File</label>
-            <input type="file" id="file" name="supporting_file" required>
+            <label asp-for="Hourly_rate"></label>
+            <input asp-for="Hourly_rate" class="form-control" />
+            <span asp-validation-for="Hourly_rate" class="text-danger"></span>
         </div>
 
-        <div class="form-group submit-btn">
-            <button type="submit">Submit Claim</button>
+        <div class="form-group">
+            <label asp-for="Claim_Start_Date"></label>
+            <input asp-for="Claim_Start_Date" type="date" class="form-control" />
+            <span asp-validation-for="Claim_Start_Date" class="text-danger"></span>
         </div>
+
+        <div class="form-group">
+            <label asp-for="Claim_End_Date"></label>
+            <input asp-for="Claim_End_Date" type="date" class="form-control" />
+            <span asp-validation-for="Claim_End_Date" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Claim_Description"></label>
+            <textarea asp-for="Claim_Description" class="form-control"></textarea>
+            <span asp-validation-for="Claim_Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SupportingFile"></label>
+            <input asp-for="SupportingFile" type="file" class="form-control" />
+            <span asp-validation-for="SupportingFile" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Claim</button>
     </form>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
 </div>
 
 <footer class="footer">
