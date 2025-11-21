@@ -1,0 +1,58 @@
+﻿@model List<POEPART_1.Models.Claim>
+@{
+    ViewBag.Title = "HR Claims";
+}
+@Html.Partial("_NavBars")
+<link rel="stylesheet" href="~/css/Styles.css" />
+
+    <button class="nav-btn" onclick="location.href='@Url.Action("HumanResource", "Home")'">← Back to Dashboard</button>
+
+    <h2>Approved Claims</h2>
+    <p>View all claims that have been final approved below.</p>
+
+    <table class="hr-lecturer-table">
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Lecturer Name</th>
+                <th>Module</th>
+                <th>Sessions</th>
+                <th>Hourly Rate</th>
+                <th>Total</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Description</th>
+                <th>Claim Status</th>
+                <th>Payment Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.Claim_Id</td>
+                    <td>@claim.Lecture_Name</td>
+                    <td>@claim.Module_Name</td>
+                    <td>@claim.Number_ofSessions</td>
+                    <td>@claim.Hourly_rate</td>
+                    <td>@claim.Total_Amount</td>
+                    <td>@claim.Claim_Start_Date.ToShortDateString()</td>
+                    <td>@claim.Claim_End_Date.ToShortDateString()</td>
+                    <td>@claim.Claim_Description</td>
+                    <td>@claim.Claim_Status</td>
+                    <td>@claim.Payment_Status</td>
+                    <td>
+                        <form asp-action="UpdatePayment" method="post" style="display:flex; gap:5px;">
+                            <input type="hidden" name="claimId" value="@claim.Claim_Id" />
+                            <button type="submit" name="paymentStatus" value="Processed" class="nav-btn">Process</button>
+                            <button type="submit" name="paymentStatus" value="Delayed" class="nav-btn">Delay</button>
+                            <button type="submit" name="paymentStatus" value="Rejected" class="nav-btn">Reject</button>
+                        </form>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

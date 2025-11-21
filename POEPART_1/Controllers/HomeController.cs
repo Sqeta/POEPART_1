@@ -177,6 +177,8 @@ public class HomeController : Controller
                         return RedirectToAction("Programme_Coordinator");
                     case "Academic Manager":
                         return RedirectToAction("Academic_Manager");
+                    case "HR Personnel":
+                        return RedirectToAction("HumanResource");
                 }
             }
        
@@ -211,6 +213,11 @@ public class HomeController : Controller
 
 
     public IActionResult Home()
+    {
+        return View();
+    }
+
+    public IActionResult HumanResource()
     {
         return View();
     }

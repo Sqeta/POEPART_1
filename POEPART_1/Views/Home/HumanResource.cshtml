@@ -1,0 +1,30 @@
+﻿@Html.Partial("_NavBars")
+<link rel="stylesheet" href="~/css/Styles.css" />
+
+<div class="hr-dashboard">
+
+    <h2>Human Resources Dashboard</h2>
+    <p>The HR personnel is responsible for managing lecturer data, processing monthly claims, and generating financial reports for payroll.</p>
+
+    <div class="hr-card-container">
+
+        <div class="hr-card" onclick='location.href="@Url.Action("HRClaims", "HR")"'>
+            <h3>Claim Processing</h3>
+            <p>View approved claims and mark them for payment or delay.</p>
+            <button>Go to Claims</button>
+        </div>
+
+        <div class="hr-card" onclick='location.href="@Url.Action("HRLecturers", "HR")"'>
+            <h3>Lecturer Management</h3>
+            <p>View and update lecturer information.</p>
+            <button>Lecturer Data</button>
+        </div>
+
+        <div class="hr-card" onclick='location.href="@Url.Action("HRReports", "HR")"'>
+            <h3>Reports & Invoices</h3>
+            <p>Generate automated invoices for payments.</p>
+            <button>Generate Reports</button>
+        </div>
+
+    </div>
+</div>

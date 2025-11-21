@@ -1,0 +1,51 @@
+﻿@model List<POEPART_1.Models.User>
+@{
+    ViewBag.Title = "Manage Lecturers";
+}
+@Html.Partial("_NavBars")
+<link rel="stylesheet" href="~/css/Styles.css" />
+
+<div class="hr-dashboard">
+    <button class="nav-btn" onclick="location.href='@Url.Action("HumanResource", "Home")'">← Back to Dashboard</button>
+
+    <h2>Lecturer Management</h2>
+    <p>Search, view, and edit lecturer information below.</p>
+
+    <!-- Search Form -->
+    <form method="get" asp-action="HRLecturers" style="margin-bottom:20px;">
+        <input type="text" name="search" value="@ViewBag.SearchTerm" placeholder="Search by name or email" />
+        <button type="submit" class="nav-btn">Search</button>
+    </form>
+
+    <!-- Lecturers Table -->
+    <table class="hr-lecturer-table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lecturer in Model)
+            {
+                <tr>
+                    <form asp-action="EditLecturer" method="post">
+                    <td>@lecturer.userID</td>
+                    <td>
+                        <input type="text" name="full_names" value="@lecturer.full_names" />
+                    </td>
+                    <td>
+                        <input type="email" name="email_address" value="@lecturer.email_address" />
+                    </td>
+                    <td>
+                        <input type="hidden" name="userID" value="@lecturer.userID" />
+                        <button type="submit" class="nav-btn">Update</button>
+                    </td>
+                    </form>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

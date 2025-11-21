@@ -553,3 +553,332 @@
     .reject-btn:hover {
         background-color: #da190b;
     }
+/* HR Claims Panel */
+.hr-claims-panel {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    border-left: 5px solid #2563eb;
+}
+
+/* Lecturer Management Panel */
+.hr-lecturer-panel {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    border-left: 5px solid #10b981;
+}
+
+/* Navigation Section */
+.hr-navigation {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Navigation Buttons */
+.nav-btn {
+    padding: 12px 20px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background: #2563eb;
+    color: white;
+}
+
+    .nav-btn:hover {
+        background: #1e40af;
+        transform: scale(1.05);
+    }
+
+/* Headings */
+.section h2 {
+    color: #374151;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* Text inside panels */
+.section p {
+    font-size: 16px;
+    color: #4b5563;
+    margin: 6px 0;
+}
+
+
+/* HR Dashboard Container */
+.hr-dashboard {
+    max-width: 70%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+    .hr-dashboard h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        color: #1f2937;
+    }
+
+    .hr-dashboard p {
+        font-size: 17px;
+        color: #4b5563;
+        margin-bottom: 30px;
+    }
+
+/* HR Card Layout */
+.hr-card-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Individual Card */
+.hr-card {
+    background: #ffffff;
+    width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+    text-align: center;
+    border-top: 5px solid #2563eb;
+}
+
+    /* Hover animation */
+    .hr-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .hr-card h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: #1e3a8a;
+    }
+
+    .hr-card p {
+        color: #4b5563;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    /* Button inside card */
+    .hr-card button {
+        padding: 10px 15px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+        .hr-card button:hover {
+            background: #1e40af;
+            transform: scale(1.05);
+        }
+
+/* HR Lecturer Management Page Styles */
+
+
+    .hr-dashboard h2 {
+        font-size: 28px;
+        color: #1f2937;
+        margin-bottom: 8px;
+    }
+
+    .hr-dashboard p {
+        font-size: 16px;
+        color: #4b5563;
+        margin-bottom: 20px;
+    }
+
+    /* Search Form */
+    .hr-dashboard form input[type="text"] {
+        padding: 8px 12px;
+        width: 250px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        margin-right: 8px;
+    }
+
+    .hr-dashboard form .nav-btn {
+        padding: 8px 16px;
+        background-color: #2563eb;
+        color: white;
+        border-radius: 6px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+        .hr-dashboard form .nav-btn:hover {
+            background-color: #1e40af;
+            transform: scale(1.05);
+        }
+
+/* Lecturer Table */
+.hr-lecturer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+    .hr-lecturer-table th, .hr-lecturer-table td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px;
+        text-align: left;
+    }
+
+    .hr-lecturer-table th {
+        background-color: #2563eb;
+        color: white;
+        font-size: 16px;
+    }
+
+    .hr-lecturer-table input[type="text"],
+    .hr-lecturer-table input[type="email"] {
+        width: 95%;
+        padding: 6px 8px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    .hr-lecturer-table button {
+        background-color: #10b981;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+        .hr-lecturer-table button:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+
+.hr-claims-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+    .hr-claims-table th, .hr-claims-table td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .hr-claims-table th {
+        background-color: #2563eb;
+        color: white;
+        font-size: 15px;
+    }
+
+    .hr-claims-table button.nav-btn {
+        padding: 5px 10px;
+        font-size: 13px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+
+    .hr-claims-table button.delay-btn {
+        background-color: #f59e0b;
+    }
+
+        .hr-claims-table button.delay-btn:hover {
+            background-color: #b45309;
+        }
+
+    .hr-claims-table button.reject-btn {
+        background-color: #ef4444;
+    }
+
+        .hr-claims-table button.reject-btn:hover {
+            background-color: #b91c1c;
+        }
+
+
+.dashboard-title {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.dashboard-description {
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.invoice-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .form-group select {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+.nav-btn.btn-generate {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .nav-btn.btn-generate:hover {
+        background-color: #2980b9;
+    }
+
+.notice {
+    margin-top: 20px;
+    padding: 10px;
+    border-left: 4px solid #27ae60;
+    background-color: #eafaf1;
+    color: #2c3e50;
+    border-radius: 4px;
+    font-size: 14px;
+}

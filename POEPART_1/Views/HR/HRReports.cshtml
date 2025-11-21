@@ -1,0 +1,31 @@
+﻿@model POEPART_1.Models.InvoiceRequestViewModel
+@{
+    ViewBag.Title = "HR Reports - Generate Invoice";
+}
+@Html.Partial("_NavBars")
+<link rel="stylesheet" href="~/css/Styles.css" />
+<div class="hr-dashboard">
+    <h2 class="dashboard-title">Generate Lecturer Invoice</h2>
+
+    <form method="get" asp-action="DownloadInvoicePdf" class="invoice-form">
+        <div class="form-group">
+            <label for="claimId">Select Processed Claim:</label>
+            <select id="claimId" name="claimId" required>
+                <option value="">-- Select Processed Claim --</option>
+                @foreach (var claim in Model.ProcessedClaims)
+                {
+                    <option value="@claim.Claim_Id">
+                        @claim.Lecture_Name - @claim.Module_Name - @claim.Claim_Start_Date.ToShortDateString()
+                    </option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="nav-btn btn-generate">Generate Invoice (PDF)</button>
+    </form>
+</div>
+
+
+<footer class="footer">
+    <p>&copy; @DateTime.Now.Year Contract Monthly Claim System. All rights reserved.</p>
+</footer>

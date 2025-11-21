@@ -156,13 +156,13 @@ namespace POEPART_1.Models
                     using (SqlCommand command = new SqlCommand(sql_query, connect))
                     {
                         command.ExecuteNonQuery();
-                        Console.WriteLine("✅ Claims table created successfully!");
+                        Console.WriteLine(" Claims table created successfully!");
                     }
                 }
             }
             catch (Exception error)
             {
-                Console.WriteLine("❌ Error creating Claims table: " + error.Message);
+                Console.WriteLine(" Error creating Claims table: " + error.Message);
             }
         }
 
@@ -224,13 +224,13 @@ namespace POEPART_1.Models
                         command.Parameters.AddWithValue("@ClaimStatus", "Pending");
 
                         command.ExecuteNonQuery();
-                        Console.WriteLine("✅ Claim stored successfully!");
+                        Console.WriteLine(" Claim stored successfully!");
                     }
                 }
             }
             catch (Exception error)
             {
-                Console.WriteLine("❌ Error while storing claim: " + error.Message);
+                Console.WriteLine(" Error while storing claim: " + error.Message);
                 throw; // re-throw to see errors in VS output
             }
         }
@@ -279,7 +279,7 @@ namespace POEPART_1.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Error fetching claims: " + ex.Message);
+                Console.WriteLine(" Error fetching claims: " + ex.Message);
             }
 
             return claims;
@@ -325,7 +325,7 @@ namespace POEPART_1.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Error fetching all claims: " + ex.Message);
+                Console.WriteLine(" Error fetching all claims: " + ex.Message);
             }
 
             return claims;
@@ -348,11 +348,11 @@ namespace POEPART_1.Models
                     }
                 }
 
-                Console.WriteLine($"✅ Claim #{claimId} updated to {newStatus}");
+                Console.WriteLine($"  Claim #{claimId} updated to {newStatus}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Error updating claim: " + ex.Message);
+                Console.WriteLine(" Error updating claim: " + ex.Message);
             }
         }
 
@@ -375,9 +375,286 @@ namespace POEPART_1.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Error updating claim status by manager: " + ex.Message);
+                Console.WriteLine(" Error updating claim status by manager: " + ex.Message);
             }
         }
+
+
+        // Get all lecturers
+        public List<User> GetAllLecturers()
+        {
+            var lecturers = new List<User>();
+
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(connection))
+                {
+                    connect.Open();
+                    string query = "SELECT userID, full_names, email_address, role FROM users WHERE role = 'Lecture' ORDER BY full_names";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connect))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lecturers.Add(new User
+                            {
+                                userID = reader.GetInt32(0),
+                                full_names = reader.GetString(1),
+                                email_address = reader.GetString(2),
+                                role = reader.GetString(3)
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Error fetching lecturers: " + ex.Message);
+            }
+
+            return lecturers;
+        }
+
+        // Search lecturers by name or email
+        public List<User> SearchLecturers(string searchTerm)
+        {
+            var lecturers = new List<User>();
+
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(connection))
+                {
+                    connect.Open();
+                    string query = @"SELECT userID, full_names, email_address, role 
+                             FROM users 
+                             WHERE role = 'Lecture' 
+                             AND (full_names LIKE @search OR email_address LIKE @search)
+                             ORDER BY full_names";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lecturers.Add(new User
+                                {
+                                    userID = reader.GetInt32(0),
+                                    full_names = reader.GetString(1),
+                                    email_address = reader.GetString(2),
+                                    role = reader.GetString(3)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Error searching lecturers: " + ex.Message);
+            }
+
+            return lecturers;
+        }
+
+        // Update lecturer information
+        public void UpdateLecturer(int userID, string fullName, string email)
+        {
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(connection))
+                {
+                    connect.Open();
+                    string query = @"UPDATE users 
+                             SET full_names = @FullName, email_address = @Email 
+                             WHERE userID = @UserID AND role = 'Lecture'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@FullName", fullName);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@UserID", userID);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        Console.WriteLine(rows > 0 ? " Lecturer updated successfully" : " Lecturer not found");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Error updating lecturer: " + ex.Message);
+            }
+        }
+
+
+        // Get all approved claims
+        public List<Claim> GetApprovedClaims()
+        {
+            var claims = new List<Claim>();
+
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(connection))
+                {
+                    connect.Open();
+                    string query = @"SELECT Claim_Id, EmployeeNum, Lecture_Name, Module_Name, Number_ofSessions,
+                        Hourly_rate, Total_Amount, Claim_Start_Date, Claim_End_Date,
+                        Claim_Description, Claim_Status, Payment_Status
+                 FROM Claims
+                 WHERE Claim_Status LIKE '%Final Approved%'
+                 ORDER BY Claim_Id DESC";
+
+
+                    using (SqlCommand cmd = new SqlCommand(query, connect))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            claims.Add(new Claim
+                            {
+                                Claim_Id = reader.GetInt32(0),
+                                EmployeeNum = reader.GetInt32(1),
+                                Lecture_Name = reader.GetString(2),
+                                Module_Name = reader.GetString(3),
+                                Number_ofSessions = reader.GetInt32(4),
+                                Hourly_rate = reader.GetDecimal(5),
+                                Total_Amount = reader.GetDecimal(6),
+                                Claim_Start_Date = reader.GetDateTime(7),
+                                Claim_End_Date = reader.GetDateTime(8),
+                                Claim_Description = reader.IsDBNull(9) ? null : reader.GetString(9),
+                                Claim_Status = reader.IsDBNull(10) ? "Pending" : reader.GetString(10),
+                                Payment_Status = reader.IsDBNull(11) ? "Pending" : reader.GetString(11)
+                            });
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Error fetching approved claims: " + ex.Message);
+            }
+
+            return claims;
+        }
+
+        public void UpdatePaymentStatus(int claimId, string newPaymentStatus)
+        {
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(connection))
+                {
+                    connect.Open();
+                    string query = "UPDATE Claims SET Payment_Status = @PaymentStatus WHERE Claim_Id = @ClaimId";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@PaymentStatus", newPaymentStatus);
+                        cmd.Parameters.AddWithValue("@ClaimId", claimId);
+                        int rows = cmd.ExecuteNonQuery(); // returns number of rows affected
+                        Console.WriteLine(rows > 0
+                            ? $" Claim #{claimId} payment status updated to {newPaymentStatus}"
+                            : $" Claim #{claimId} not found / not updated");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Error updating payment status: " + ex.Message);
+                throw;
+            }
+        }
+       public List<Claim> GetAllProcessedClaims()
+{
+    var claims = new List<Claim>();
+    
+    using (SqlConnection connect = new SqlConnection(connection))
+    {
+        connect.Open();
+        string query = @"
+            SELECT Claim_Id, EmployeeNum, Lecture_Name, Module_Name, Claim_Start_Date
+            FROM Claims
+            WHERE Payment_Status = 'Processed'
+            ORDER BY Claim_Start_Date ASC";
+
+        using (SqlCommand cmd = new SqlCommand(query, connect))
+        using (SqlDataReader reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                claims.Add(new Claim
+                {
+                    Claim_Id = reader.GetInt32(0),
+                    EmployeeNum = reader.GetInt32(1),
+                    Lecture_Name = reader.GetString(2),
+                    Module_Name = reader.GetString(3),
+                    Claim_Start_Date = reader.GetDateTime(4)
+                });
+            }
+        }
+    }
+
+    return claims;
+}
+
+
+        public Claim GetClaimById(int claimId)
+        {
+            Claim claim = null;
+
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(connection))
+                {
+                    connect.Open();
+                    string query = @"
+                SELECT Claim_Id, EmployeeNum, Lecture_Name, Module_Name, Number_ofSessions,
+                       Hourly_rate, Total_Amount, Claim_Start_Date, Claim_End_Date, Claim_Description,
+                       Claim_Status, Payment_Status
+                FROM Claims
+                WHERE Claim_Id = @ClaimId";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@ClaimId", claimId);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                claim = new Claim
+                                {
+                                    Claim_Id = reader.GetInt32(0),
+                                    EmployeeNum = reader.GetInt32(1),
+                                    Lecture_Name = reader.GetString(2),
+                                    Module_Name = reader.GetString(3),
+                                    Number_ofSessions = reader.GetInt32(4),
+                                    Hourly_rate = reader.GetDecimal(5),
+                                    Total_Amount = reader.GetDecimal(6),
+                                    Claim_Start_Date = reader.GetDateTime(7),
+                                    Claim_End_Date = reader.GetDateTime(8),
+                                    Claim_Description = reader.IsDBNull(9) ? null : reader.GetString(9),
+                                    Claim_Status = reader.IsDBNull(10) ? "Pending" : reader.GetString(10),
+                                    Payment_Status = reader.IsDBNull(11) ? "Pending" : reader.GetString(11)
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Error fetching claim: " + ex.Message);
+            }
+
+            return claim;
+        }
+
+
+
+
 
     }
 }

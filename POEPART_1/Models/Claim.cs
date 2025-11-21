@@ -36,5 +36,6 @@ namespace POEPART_1.Models
         public IFormFile SupportingFile { get; set; }
 
         public string? Claim_Status { get; set; } = "Pending";
+        public string? Payment_Status { get; set; } = "Pending";
     }
 }
